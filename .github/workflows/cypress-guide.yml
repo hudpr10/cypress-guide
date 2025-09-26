@@ -1,0 +1,27 @@
+name: Cypress Test
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "cypress-guide/**.js"
+      - "cypress-guide/**.json"
+      - "cypress-guide/**.yml"
+
+jobs:
+  cypress-guide:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.16.0
+
+      - name: Install Dependecies
+        run: npm install
+        working-directory: ./cypress-guide
